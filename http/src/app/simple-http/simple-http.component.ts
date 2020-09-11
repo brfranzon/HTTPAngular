@@ -1,6 +1,7 @@
 import { Component} from '@angular/core';
 import { HttpClient } from '@angular/common/http';  // class
 
+import { HttpGetService } from '../services/http-get.service';
 
 @Component({
   selector: 'simple-http',
@@ -16,7 +17,9 @@ export class SimpleHttpComponent {
   showTable: boolean = false;
   sucheText: any;
 
-  constructor(private _httpClient: HttpClient ) { }
+  constructor(private _httpClient: HttpClient,
+              private _httpGetService : HttpGetService
+           ) { }
 
   makeRequest(){
     this.loading = true;    
@@ -27,6 +30,7 @@ export class SimpleHttpComponent {
         );
     this.loading = false;   
     this.showTable =! this.showTable;
+    console.log(this._httpGetService);
   }
 
   onClickPerson(p: any){

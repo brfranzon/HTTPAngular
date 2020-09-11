@@ -1,11 +1,12 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
+import { AppRoutingModule } from './app-routing.module';
+
 // search module
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
+import { HttpGetModule } from  '../app/services/http-get.module';
 
-import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { SimpleHttpComponent } from './simple-http/simple-http.component';
 
@@ -18,8 +19,8 @@ import { SimpleHttpComponent } from './simple-http/simple-http.component';
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    HttpClientModule,
-    Ng2SearchPipeModule
+    Ng2SearchPipeModule,
+    HttpGetModule
   ],
   providers: [],
   bootstrap: [AppComponent]
