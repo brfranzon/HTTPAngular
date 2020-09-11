@@ -3,6 +3,9 @@ import { HttpClient } from '@angular/common/http';  // class
 
 import { HttpGetService } from '../services/http-get.service';
 
+// export excel
+import * as XLSX from 'xlsx';
+
 @Component({
   selector: 'simple-http',
   templateUrl: './simple-http.component.html',
@@ -14,9 +17,11 @@ export class SimpleHttpComponent {
   /*Variables*/
   loading: boolean;
   data: Object;
-  showTable: boolean = false;
+  showTable: boolean = false;n
   sucheText: any;
 
+  fileName = "ExcelSheet.xlsx";
+  
   constructor(private _httpClient: HttpClient,
               private _httpGetService : HttpGetService
            ) { }
@@ -35,6 +40,18 @@ export class SimpleHttpComponent {
 
   onClickPerson(p: any){
     console.log('kakakaka', p.title);
+  }
+
+  exportExcell(){
+    let element = document.getElementById('excel-table');
+    const ws:XLSX.WorkSheet = XLSX.utils.table_to_sheet(element);
+    const wb: XLSX.WorkBook = XLSX.utils.book_new();
+    
+    XLSX.utils.book_append_sheet(wb, ws, "Sheet1");
+
+    XLSX.writeFile(wb, this.fileName);
+
+
   }
 
 }
